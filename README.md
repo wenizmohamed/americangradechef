@@ -51,3 +51,44 @@ To install dependencies and run your Google Cloud Vertex AI Studio App locally, 
 
 ```bash
 npm install && npm run dev
+```
+
+## Public Mockup Demo
+
+For a quick preview of the application's interface and functionality without setting up the full development environment, you can view the **public mockup page**.
+
+### Viewing the Mockup
+
+The mockup page (`mockup.html`) is a standalone HTML file that demonstrates:
+
+* The full user interface design
+* Interactive meal moment and vibe selection
+* Sample recipe generation with multiple recipe variations
+* AI Chef chatbot interface
+* All visual elements and animations
+
+**To view the mockup:**
+
+1. **Local viewing**: Simply open `mockup.html` in any modern web browser:
+   ```bash
+   # Option 1: Direct file open
+   open mockup.html  # macOS
+   xdg-open mockup.html  # Linux
+   start mockup.html  # Windows
+   
+   # Option 2: Using a local server
+   python3 -m http.server 8080
+   # Then navigate to http://localhost:8080/mockup.html
+   ```
+
+2. **GitHub Pages**: The mockup can also be deployed to GitHub Pages for easy sharing.
+
+### Features in the Mockup
+
+* **Interactive Selection**: Choose from 5 meal moments (Breakfast, Lunch, Dinner, Snack, Party Time) and 4 vibes (Quick & Easy, Gourmet Chef, Healthy & Fresh, Comfort Food)
+* **Sample Recipes**: Pre-loaded recipes for different combinations showcasing the app's output
+* **AI Chef Chat**: Simulated chatbot interface demonstrating the conversational AI feature
+* **Responsive Design**: Works on desktop and mobile devices
+* **No Backend Required**: Fully functional demo without needing Google Cloud setup
+
+**Note**: The mockup uses simulated data and does not connect to actual AI services. It's designed for demonstration, prototyping, and stakeholder previews

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AG AI Chef - Roasted Sesame Decision Prompter - Demo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
+    
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #fdfcf8;
+    }
+    
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .pulse-animation {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.7;
+      }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(217, 119, 6, 0.3);
+    }
+
+    .option-card {
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .option-card:hover {
+      border-color: #d97706;
+      background-color: #fff7ed;
+    }
+
+    .option-card.selected {
+      border-color: #d97706;
+      background-color: #fff7ed;
+      border-width: 2px;
+    }
+
+    .mockup-badge {
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen flex flex-col relative">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-stone-200">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+          <div class="w-12 h-12 bg-gradient-to-br from-amber-600 to-amber-800 rounded-lg flex items-center justify-center">
+            <span class="text-white text-2xl font-bold">AG</span>
+          </div>
+          <div>
+            <h1 class="text-xl font-bold text-stone-800">American Garden AI Chef</h1>
+            <p class="text-xs text-stone-500">Roasted Sesame Decision Prompter</p>
+          </div>
+        </div>
+        <span class="mockup-badge">DEMO</span>
+      </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-5xl">
+      <!-- Initial View -->
+      <div id="heroView" class="fade-in">
+        <!-- Hero Section -->
+        <div class="text-center mb-12">
+          <h2 class="text-5xl font-bold text-stone-800 mb-4">
+            Discover Your Perfect
+            <span class="gradient-text"> Sesame Moment</span>
+          </h2>
+          <p class="text-xl text-stone-600 max-w-2xl mx-auto">
+            Let our AI Chef inspire you with creative ways to use American Garden's 
+            Roasted Sesame Dressing. Every meal, every moment, made delicious.
+          </p>
+        </div>
+
+        <!-- Prompter Form -->
+        <div class="bg-white rounded-2xl shadow-lg p-8 border border-stone-200">
+          <h3 class="text-2xl font-bold text-stone-800 mb-6 text-center">
+            Tell Us About Your Meal Moment
+          </h3>
+
+          <!-- Meal Moment Selection -->
+          <div class="mb-8">
+            <label class="block text-sm font-semibold text-stone-700 mb-3">
+              When are you eating?
+            </label>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+              <div class="option-card border-2 border-stone-200 rounded-lg p-4 text-center" data-type="moment" data-value="Breakfast">
+                <div class="text-3xl mb-2">🌅</div>
+                <div class="text-sm font-semibold text-stone-700">Breakfast</div>
+              </div>
+              <div class="option-card border-2 border-stone-200 rounded-lg p-4 text-center" data-type="moment" data-value="Lunch">
+                <div class="text-3xl mb-2">☀️</div>
+                <div class="text-sm font-semibold text-stone-700">Lunch</div>
+              </div>
+              <div class="option-card border-2 border-stone-200 rounded-lg p-4 text-center" data-type="moment" data-value="Dinner">
+                <div class="text-3xl mb-2">🌙</div>
+                <div class="text-sm font-semibold text-stone-700">Dinner</div>
+              </div>
+              <div class="option-card border-2 border-stone-200 rounded-lg p-4 text-center" data-type="moment" data-value="Snack">
+                <div class="text-3xl mb-2">🥙</div>
+                <div class="text-sm font-semibold text-stone-700">Snack</div>
+              </div>
+              <div class="option-card border-2 border-stone-200 rounded-lg p-4 text-center" data-type="moment" data-value="Party Time">
+                <div class="text-3xl mb-2">🎉</div>
+                <div class="text-sm font-semibold text-stone-700">Party Time</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vibe Selection -->
+          <div class="mb-8">
+            <label class="block text-sm font-semibold text-stone-700 mb-3">
+              What's your vibe?
+            </label>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div class="option-card border-2 border-stone-200 rounded-lg p-4 text-center" data-type="vibe" data-value="Quick & Easy">
+                <div class="text-3xl mb-2">⚡</div>
+                <div class="text-sm font-semibold text-stone-700">Quick & Easy</div>
+              </div>
+              <div class="option-card border-2 border-stone-200 rounded-lg p-4 text-center" data-type="vibe" data-value="Gourmet Chef">
+                <div class="text-3xl mb-2">👨‍🍳</div>
+                <div class="text-sm font-semibold text-stone-700">Gourmet Chef</div>
+              </div>
+              <div class="option-card border-2 border-stone-200 rounded-lg p-4 text-center" data-type="vibe" data-value="Healthy & Fresh">
+                <div class="text-3xl mb-2">🥗</div>
+                <div class="text-sm font-semibold text-stone-700">Healthy & Fresh</div>
+              </div>
+              <div class="option-card border-2 border-stone-200 rounded-lg p-4 text-center" data-type="vibe" data-value="Comfort Food">
+                <div class="text-3xl mb-2">🍲</div>
+                <div class="text-sm font-semibold text-stone-700">Comfort Food</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Extra Info -->
+          <div class="mb-8">
+            <label class="block text-sm font-semibold text-stone-700 mb-3">
+              Any special preferences? (Optional)
+            </label>
+            <textarea 
+              id="extraInfo"
+              class="w-full px-4 py-3 border-2 border-stone-200 rounded-lg focus:outline-none focus:border-amber-600 resize-none"
+              rows="3"
+              placeholder="e.g., vegetarian, no onions, love spicy food..."
+            ></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <button 
+            onclick="generateRecipe()"
+            class="btn-primary w-full py-4 rounded-lg text-white font-semibold text-lg shadow-lg"
+          >
+            🪄 Get My Recipe Inspiration
+          </button>
+        </div>
+      </div>
+
+      <!-- Loading View -->
+      <div id="loadingView" class="hidden fade-in">
+        <div class="bg-white rounded-2xl shadow-lg p-12 text-center border border-stone-200">
+          <div class="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-amber-600 to-amber-800 rounded-full flex items-center justify-center pulse-animation">
+            <span class="text-white text-5xl">👨‍🍳</span>
+          </div>
+          <h3 class="text-2xl font-bold text-stone-800 mb-2" id="loadingMessage">
+            Consulting the American Garden AI Chef...
+          </h3>
+          <p class="text-stone-600">Creating your perfect recipe...</p>
+        </div>
+      </div>
+
+      <!-- Result View -->
+      <div id="resultView" class="hidden fade-in">
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+          <!-- Recipe Card -->
+          <div class="bg-white rounded-2xl shadow-lg p-8 border border-stone-200">
+            <div class="inline-block px-4 py-1 bg-amber-100 text-amber-800 rounded-full text-sm font-semibold mb-4" id="usageTypeBadge">
+              Drizzle
+            </div>
+            <h3 class="text-3xl font-bold text-stone-800 mb-4" id="recipeTitle">
+              Sesame-Glazed Buddha Bowl
+            </h3>
+            <p class="text-stone-600 mb-6" id="recipeDescription">
+              A vibrant, nutrient-packed bowl featuring roasted vegetables, quinoa, and crispy chickpeas, all brought together with a generous drizzle of American Garden's Roasted Sesame Dressing.
+            </p>
+
+            <div class="mb-6">
+              <h4 class="font-semibold text-stone-800 mb-3 flex items-center">
+                <span class="text-xl mr-2">🥘</span>
+                Ingredients
+              </h4>
+              <ul class="space-y-2" id="ingredientsList">
+                <li class="flex items-start">
+                  <span class="text-amber-600 mr-2">•</span>
+                  <span class="text-stone-700">1 cup quinoa, cooked</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-amber-600 mr-2">•</span>
+                  <span class="text-stone-700">1 can chickpeas, roasted</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-amber-600 mr-2">•</span>
+                  <span class="text-stone-700">2 cups mixed vegetables (bell peppers, zucchini, carrots)</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-amber-600 mr-2">•</span>
+                  <span class="text-stone-700">2 cups fresh greens (spinach, kale)</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-amber-600 mr-2">•</span>
+                  <span class="text-stone-700">4 tbsp American Garden Roasted Sesame Dressing</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-amber-600 mr-2">•</span>
+                  <span class="text-stone-700">Avocado slices and sesame seeds for garnish</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="mb-6">
+              <h4 class="font-semibold text-stone-800 mb-3 flex items-center">
+                <span class="text-xl mr-2">📝</span>
+                Instructions
+              </h4>
+              <ol class="space-y-3" id="instructionsList">
+                <li class="flex items-start">
+                  <span class="font-semibold text-amber-600 mr-3">1.</span>
+                  <span class="text-stone-700">Roast vegetables at 400°F for 20 minutes until tender and caramelized.</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="font-semibold text-amber-600 mr-3">2.</span>
+                  <span class="text-stone-700">Toss chickpeas with olive oil and spices, then roast until crispy (about 25 minutes).</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="font-semibold text-amber-600 mr-3">3.</span>
+                  <span class="text-stone-700">Assemble bowls with quinoa base, add greens, roasted vegetables, and chickpeas.</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="font-semibold text-amber-600 mr-3">4.</span>
+                  <span class="text-stone-700">Drizzle generously with American Garden Roasted Sesame Dressing.</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="font-semibold text-amber-600 mr-3">5.</span>
+                  <span class="text-stone-700">Top with avocado slices and sprinkle with sesame seeds.</span>
+                </li>
+              </ol>
+            </div>
+
+            <div class="bg-amber-50 border-l-4 border-amber-600 p-4 rounded">
+              <p class="text-sm font-semibold text-amber-900 mb-1">💡 Chef's Fun Fact</p>
+              <p class="text-sm text-amber-800" id="funFact">
+                Sesame seeds are one of the oldest oilseed crops, with evidence of cultivation dating back over 3,000 years! The nutty flavor in our Roasted Sesame Dressing comes from carefully toasted sesame seeds, bringing ancient tradition to your modern table.
+              </p>
+            </div>
+          </div>
+
+          <!-- Image Card -->
+          <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-stone-200">
+            <div class="aspect-square bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center" id="recipeImageContainer">
+              <img 
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect fill='%23fef3c7' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' font-size='120' text-anchor='middle' dy='.3em'%3E🥗%3C/text%3E%3C/svg%3E"
+                alt="Recipe visualization"
+                class="w-full h-full object-cover"
+                id="recipeImage"
+              />
+            </div>
+            <div class="p-6">
+              <p class="text-sm text-stone-600 text-center italic">
+                AI-Generated Visualization
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex gap-4 justify-center">
+          <button 
+            onclick="resetApp()"
+            class="px-8 py-3 border-2 border-amber-600 text-amber-600 rounded-lg font-semibold hover:bg-amber-50 transition-all"
+          >
+            ← Try Another Recipe
+          </button>
+          <button 
+            class="px-8 py-3 btn-primary text-white rounded-lg font-semibold shadow-lg"
+          >
+            📥 Save Recipe
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-100 py-8 mt-12 border-t border-stone-200">
+      <div class="container mx-auto px-4 text-center text-stone-500 text-sm">
+        <p>© 2025 American Garden. Powered by AI Chef Technology.</p>
+        <p class="mt-2 italic">"Bringing the world's flavors to your kitchen."</p>
+        <p class="mt-4 text-xs text-stone-400">
+          This is a demonstration mockup showcasing the interface and functionality.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Floating AI Chat Bot -->
+    <div class="fixed bottom-6 right-6 z-50">
+      <button 
+        onclick="toggleChat()"
+        class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-800 rounded-full shadow-lg flex items-center justify-center text-white text-2xl hover:scale-110 transition-all"
+        id="chatButton"
+      >
+        💬
+      </button>
+      
+      <div id="chatBox" class="hidden absolute bottom-20 right-0 w-80 bg-white rounded-2xl shadow-2xl border border-stone-200 overflow-hidden">
+        <div class="bg-gradient-to-r from-amber-600 to-amber-800 p-4 text-white">
+          <div class="flex justify-between items-center">
+            <h4 class="font-bold">AI Chef Assistant</h4>
+            <button onclick="toggleChat()" class="text-white hover:text-stone-200">✕</button>
+          </div>
+        </div>
+        <div class="p-4 h-64 overflow-y-auto" id="chatMessages">
+          <div class="bg-amber-50 rounded-lg p-3 mb-3">
+            <p class="text-sm text-stone-700">
+              👋 Hi! I'm your AI Chef Assistant. How can I help you today? Ask me about recipes, ingredients, or cooking tips!
+            </p>
+          </div>
+        </div>
+        <div class="p-4 border-t border-stone-200">
+          <div class="flex gap-2">
+            <input 
+              type="text" 
+              id="chatInput"
+              placeholder="Ask me anything..."
+              class="flex-1 px-3 py-2 border border-stone-300 rounded-lg text-sm focus:outline-none focus:border-amber-600"
+              onkeypress="if(event.key === 'Enter') sendChatMessage()"
+            />
+            <button 
+              onclick="sendChatMessage()"
+              class="btn-primary px-4 py-2 rounded-lg text-white text-sm font-semibold"
+            >
+              Send
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedMoment = null;
+    let selectedVibe = null;
+
+    // Sample recipe data for different combinations
+    const sampleRecipes = {
+      'Breakfast-Quick & Easy': {
+        title: 'Sesame Avocado Toast',
+        usageType: 'Drizzle',
+        description: 'Elevate your morning toast with creamy avocado and a nutty sesame drizzle that brings depth and flavor to this quick breakfast favorite.',
+        ingredients: [
+          '2 slices whole grain bread, toasted',
+          '1 ripe avocado, mashed',
+          '2 tbsp American Garden Roasted Sesame Dressing',
+          'Cherry tomatoes, halved',
+          'Red pepper flakes and sesame seeds for garnish',
+          'Fresh lemon juice'
+        ],
+        instructions: [
+          'Toast your bread to golden perfection.',
+          'Mash avocado with a squeeze of lemon juice and a pinch of salt.',
+          'Spread avocado generously on toast.',
+          'Arrange cherry tomato halves on top.',
+          'Drizzle with American Garden Roasted Sesame Dressing.',
+          'Garnish with red pepper flakes and sesame seeds.'
+        ],
+        funFact: 'Avocados and sesame seeds are both rich in healthy fats! This combination not only tastes amazing but also provides sustained energy to start your day.',
+        emoji: '🥑'
+      },
+      'Lunch-Healthy & Fresh': {
+        title: 'Sesame-Glazed Buddha Bowl',
+        usageType: 'Drizzle',
+        description: 'A vibrant, nutrient-packed bowl featuring roasted vegetables, quinoa, and crispy chickpeas, all brought together with a generous drizzle of American Garden\'s Roasted Sesame Dressing.',
+        ingredients: [
+          '1 cup quinoa, cooked',
+          '1 can chickpeas, roasted',
+          '2 cups mixed vegetables (bell peppers, zucchini, carrots)',
+          '2 cups fresh greens (spinach, kale)',
+          '4 tbsp American Garden Roasted Sesame Dressing',
+          'Avocado slices and sesame seeds for garnish'
+        ],
+        instructions: [
+          'Roast vegetables at 400°F for 20 minutes until tender and caramelized.',
+          'Toss chickpeas with olive oil and spices, then roast until crispy (about 25 minutes).',
+          'Assemble bowls with quinoa base, add greens, roasted vegetables, and chickpeas.',
+          'Drizzle generously with American Garden Roasted Sesame Dressing.',
+          'Top with avocado slices and sprinkle with sesame seeds.'
+        ],
+        funFact: 'Sesame seeds are one of the oldest oilseed crops, with evidence of cultivation dating back over 3,000 years! The nutty flavor in our Roasted Sesame Dressing comes from carefully toasted sesame seeds, bringing ancient tradition to your modern table.',
+        emoji: '🥗'
+      },
+      'Dinner-Gourmet Chef': {
+        title: 'Sesame-Crusted Salmon with Asian Slaw',
+        usageType: 'Mix',
+        description: 'Restaurant-quality salmon with a crispy sesame crust, served alongside a vibrant Asian-inspired slaw mixed with our signature Roasted Sesame Dressing.',
+        ingredients: [
+          '4 salmon fillets (6 oz each)',
+          '3 tbsp sesame seeds (white and black)',
+          '3 cups cabbage, thinly sliced',
+          '1 cup carrots, julienned',
+          '1/2 cup American Garden Roasted Sesame Dressing',
+          'Green onions and cilantro for garnish',
+          'Soy sauce and honey for glaze'
+        ],
+        instructions: [
+          'Mix soy sauce and honey, brush on salmon fillets.',
+          'Press sesame seeds onto salmon to create a crust.',
+          'Pan-sear salmon, sesame side down, until golden (3-4 minutes), then flip and cook through.',
+          'Combine cabbage and carrots in a bowl.',
+          'Toss slaw with American Garden Roasted Sesame Dressing.',
+          'Plate salmon over slaw, garnish with green onions and cilantro.'
+        ],
+        funFact: 'The sesame crust not only adds incredible flavor and texture but also helps seal in the salmon\'s moisture, creating a perfectly tender interior with a crispy exterior!',
+        emoji: '🐟'
+      },
+      'Snack-Quick & Easy': {
+        title: 'Sesame Veggie Sticks with Hummus',
+        usageType: 'Dip',
+        description: 'Fresh, crunchy vegetables paired with creamy hummus enhanced by our Roasted Sesame Dressing for a snack that\'s both nutritious and delicious.',
+        ingredients: [
+          '1 cup hummus',
+          '3 tbsp American Garden Roasted Sesame Dressing',
+          'Carrot sticks, cucumber spears, bell pepper strips',
+          'Celery stalks and cherry tomatoes',
+          'Sesame seeds for garnish'
+        ],
+        instructions: [
+          'Mix hummus with American Garden Roasted Sesame Dressing until smooth.',
+          'Transfer to a serving bowl.',
+          'Arrange fresh vegetables around the hummus.',
+          'Sprinkle sesame seeds on top of the dip.',
+          'Serve immediately and enjoy!'
+        ],
+        funFact: 'Hummus has been enjoyed in the Middle East for thousands of years! Adding our Roasted Sesame Dressing creates a modern twist on this ancient favorite.',
+        emoji: '🥕'
+      },
+      'Party Time-Comfort Food': {
+        title: 'Sesame Chicken Sliders',
+        usageType: 'Mix',
+        description: 'Crowd-pleasing mini burgers with juicy chicken patties infused with sesame flavor, perfect for parties and gatherings.',
+        ingredients: [
+          '1 lb ground chicken',
+          '1/4 cup American Garden Roasted Sesame Dressing',
+          '12 slider buns',
+          'Lettuce, tomato slices, and pickles',
+          'Sesame seeds and green onions',
+          'Breadcrumbs and egg for binding'
+        ],
+        instructions: [
+          'Mix ground chicken with 2 tbsp dressing, breadcrumbs, and egg.',
+          'Form into 12 small patties.',
+          'Grill or pan-fry patties until cooked through (about 4 minutes per side).',
+          'Toast slider buns lightly.',
+          'Assemble sliders with lettuce, patty, tomato, and pickles.',
+          'Drizzle remaining dressing on top and garnish with sesame seeds.'
+        ],
+        funFact: 'Sliders got their name from their ability to "slide" down easily at parties! These sesame-flavored versions will disappear just as quickly.',
+        emoji: '🍔'
+      }
+    };
+
+    // Handle option selection
+    document.querySelectorAll('.option-card').forEach(card => {
+      card.addEventListener('click', function() {
+        const type = this.getAttribute('data-type');
+        const value = this.getAttribute('data-value');
+        
+        // Remove selected class from siblings
+        document.querySelectorAll(`[data-type="${type}"]`).forEach(c => {
+          c.classList.remove('selected');
+        });
+        
+        // Add selected class to this card
+        this.classList.add('selected');
+        
+        // Store selection
+        if (type === 'moment') {
+          selectedMoment = value;
+        } else if (type === 'vibe') {
+          selectedVibe = value;
+        }
+      });
+    });
+
+    function generateRecipe() {
+      if (!selectedMoment || !selectedVibe) {
+        alert('Please select both a meal moment and a vibe!');
+        return;
+      }
+
+      // Hide hero view, show loading
+      document.getElementById('heroView').classList.add('hidden');
+      document.getElementById('loadingView').classList.remove('hidden');
+
+      // Simulate AI processing
+      setTimeout(() => {
+        document.getElementById('loadingMessage').textContent = `Styling your ${selectedMoment.toLowerCase()}...`;
+      }, 1500);
+
+      setTimeout(() => {
+        displayRecipe();
+      }, 3000);
+    }
+
+    function displayRecipe() {
+      // Get recipe based on selection
+      const key = `${selectedMoment}-${selectedVibe}`;
+      let recipe = sampleRecipes[key];
+      
+      // If no exact match, use a default
+      if (!recipe) {
+        recipe = sampleRecipes['Lunch-Healthy & Fresh'];
+      }
+
+      // Update UI with recipe
+      document.getElementById('usageTypeBadge').textContent = recipe.usageType;
+      document.getElementById('recipeTitle').textContent = recipe.title;
+      document.getElementById('recipeDescription').textContent = recipe.description;
+      document.getElementById('funFact').textContent = recipe.funFact;
+
+      // Update ingredients
+      const ingredientsList = document.getElementById('ingredientsList');
+      ingredientsList.innerHTML = recipe.ingredients.map(ing => `
+        <li class="flex items-start">
+          <span class="text-amber-600 mr-2">•</span>
+          <span class="text-stone-700">${ing}</span>
+        </li>
+      `).join('');
+
+      // Update instructions
+      const instructionsList = document.getElementById('instructionsList');
+      instructionsList.innerHTML = recipe.instructions.map((inst, idx) => `
+        <li class="flex items-start">
+          <span class="font-semibold text-amber-600 mr-3">${idx + 1}.</span>
+          <span class="text-stone-700">${inst}</span>
+        </li>
+      `).join('');
+
+      // Update image
+      const emoji = recipe.emoji || '🍽️';
+      document.getElementById('recipeImage').src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect fill='%23fef3c7' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' font-size='120' text-anchor='middle' dy='.3em'%3E${emoji}%3C/text%3E%3C/svg%3E`;
+
+      // Hide loading, show result
+      document.getElementById('loadingView').classList.add('hidden');
+      document.getElementById('resultView').classList.remove('hidden');
+    }
+
+    function resetApp() {
+      selectedMoment = null;
+      selectedVibe = null;
+      document.querySelectorAll('.option-card').forEach(card => {
+        card.classList.remove('selected');
+      });
+      document.getElementById('extraInfo').value = '';
+      
+      document.getElementById('resultView').classList.add('hidden');
+      document.getElementById('heroView').classList.remove('hidden');
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleChat() {
+      const chatBox = document.getElementById('chatBox');
+      chatBox.classList.toggle('hidden');
+    }
+
+    function sendChatMessage() {
+      const input = document.getElementById('chatInput');
+      const message = input.value.trim();
+      
+      if (!message) return;
+      
+      const chatMessages = document.getElementById('chatMessages');
+      
+      // Add user message
+      const userMsg = document.createElement('div');
+      userMsg.className = 'bg-stone-100 rounded-lg p-3 mb-3 ml-8';
+      userMsg.innerHTML = `<p class="text-sm text-stone-700">${message}</p>`;
+      chatMessages.appendChild(userMsg);
+      
+      input.value = '';
+      
+      // Simulate AI response
+      setTimeout(() => {
+        const aiMsg = document.createElement('div');
+        aiMsg.className = 'bg-amber-50 rounded-lg p-3 mb-3 mr-8';
+        aiMsg.innerHTML = `<p class="text-sm text-stone-700">Thanks for your question! In the full version of the app, I can help you with recipe ideas, cooking tips, and ingredient substitutions. This is a demo mockup showcasing the interface. 👨‍🍳</p>`;
+        chatMessages.appendChild(aiMsg);
+        
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 1000);
+      
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+  </script>
+</body>
+</html>
