@@ -32,6 +32,7 @@ export interface RecipeSuggestion {
 export interface UserSelection {
   moment: MealMoment;
   vibe: Vibe;
+  usageType: UsageType;
   extraInfo: string;
 }
 
